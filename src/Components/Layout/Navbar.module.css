@@ -1,0 +1,32 @@
+.link{
+  display: flex;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.navbar img{
+  width: 3em;
+  padding: .5em;
+}
+
+.navbar{
+  background-color: #003366;
+}
+
+.list{
+  display: flex;
+  list-style: none;
+  align-items: center;
+  
+}
+
+.item{
+  margin-right: 1em;
+  color: #ffffff;
+  font-size: 1.3em;
+}
+
+.item a{
+  text-decoration: none;
+  color: #ffffff;
+}
