@@ -1,0 +1,27 @@
+.footer{
+  background-color: #003366;
+  color: #ffffff;
+  font-size: 2em;
+  display: flex;
+  padding: 2vh;
+  justify-content: center;
+}
+
+.list{
+  list-style: none;
+  display: flex;
+}
+
+.list svg{
+  cursor: pointer;
+}
+
+.iten{
+  padding: 0 1em;
+  color: #FFA500;
+}
+
+.iten:hover{
+  color: #ffffff;
+  transition: .5s;
+}

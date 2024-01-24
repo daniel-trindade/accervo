@@ -1,5 +1,13 @@
 .home{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80vh;
+
+}
+
+.home img{
+  width: 30em;
 }
