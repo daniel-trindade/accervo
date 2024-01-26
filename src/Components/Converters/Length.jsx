@@ -2,14 +2,42 @@ import ConversionTable from "./ConversionTable"
 import style from "./FormStyle.module.css"
 
 
-function Length(){
+function Length({unitSelected}){
 
-  
-  const lengthUnits = ["Nanômetro", "Micrômetro", "Milímetro", "Centímetro", "Metro", "Quilômetro", "Milha", "Pé", "Polegada", "Jarda"];
-  const volumeUnits = ["Micrograma", "Miligrama", "Grama", "Quilograma", "Tonelada", "Libra", "Onça"];
-  const temperatureUnits = ["Kelvin", "Fahrenheit", "Celsius"];
+  if (unitSelected === "Comprimento"){
+    console.log("deu certo Comprimento")
+    const lengthUnits = ["Nanômetro", "Micrômetro", "Milímetro", "Centímetro", "Metro", "Quilômetro", "Milha", "Pé", "Polegada", "Jarda"];
+    const current = document.getElementById("currentUnit")
 
+    const options = document.createElement("optgroup")
+    options.setAttribute('label', 'Unidades')
+    lengthUnits.forEach(function(unit){
+      options.innerHTML += "<option>" + unit +"</option>"
+    })
 
+    current.append(options)
+
+  }
+
+  if(unitSelected === "Volume"){
+    console.log("Deu certo Volume")
+    const volumeUnits = ["Micrograma", "Miligrama", "Grama", "Quilograma", "Tonelada", "Libra", "Onça"];
+
+    const current = document.getElementById("currentUnit")
+
+    const options = document.createElement("optgroup")
+    options.setAttribute('label', 'Unidades')
+    volumeUnits.forEach(function(unit){
+      options.innerHTML += "<option>" + unit +"</option>"
+    })
+
+    current.append(options)
+  }
+
+  if(unitSelected === "Temperatura"){
+    console.log("Deu certo Temperatura")
+    const temperatureUnits = ["Kelvin", "Fahrenheit", "Celsius"];
+  }
 
   return(
     <div className={style.formContainer}>
