@@ -37,6 +37,17 @@ function Length({unitSelected}){
   if(unitSelected === "Temperatura"){
     console.log("Deu certo Temperatura")
     const temperatureUnits = ["Kelvin", "Fahrenheit", "Celsius"];
+
+    const current = document.getElementById("currentUnit")
+
+    const options = document.createElement("optgroup")
+    options.setAttribute('label', 'Unidades')
+    temperatureUnitsUnits.forEach(function(unit){
+      options.innerHTML += "<option>" + unit +"</option>"
+    })
+
+    current.append(options)
+    
   }
 
   return(
