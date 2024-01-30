@@ -1,9 +1,19 @@
+.container{
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .selectBox{
   border: 3px solid #003366;
-  width: 51.5em;
+  width: 1000px;
   height: 3em;
-  margin-left: 3.7em;
   font-size: 1em;
   border-radius: 10px;
   text-align: center;
+}
+
+.heigth{
+  height: 1px;
 }

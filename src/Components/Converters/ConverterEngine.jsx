@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ConversionTable from "./ConversionTable";
-import style from "./FormStyle.module.css";
+import style from "./ConverterEngine.module.css";
 
 
 function Length({unitSelected}){
@@ -47,42 +47,43 @@ function Length({unitSelected}){
   }
 
   return(
-    <div>
-      <form onSubmit={converter} className={style.formContainer}>
-        <div>
-          <label htmlFor="currentUnit" className={`${style.tagLabel} ${style.adjust}`}>De: </label>
+    <form onSubmit={converter} className={style.formContainer}>
 
-          <select name="currentUnit" id="currentUnit" className={style.selectBox}>
-            <option value="">Selecione uma Opção</option>
-            {currentUnitOptions.map((unit, index) => (
-              <option key={index} value={unit}> {unit} </option>
-            ))}
-          </select>
-        </div>
+      <div className={style.organizer}>
 
-        <div>
-          <label htmlFor="targetUnit" className={style.tagLabel}>Para: </label>
-          <select name="targetUnit" id="targetUnit" className={style.selectBox}>
-            <option value="">Selecione uma Opção</option>
-            {currentUnitOptions.map((unit, index) => (
-              <option key={index} value={unit}> {unit} </option>
-            ))}
-          </select>
-        </div>
-        
-        <div>
-          <label htmlFor="inputValue" className={style.tagLabel}>Valor:</label>
-          <input type="text" name="inputValue" id="inputValue" className={style.dialogBox}/>
-        </div>
-        <div>
-          <label htmlFor="resultValue" className={style.tagLabel}>Resultado:</label>
-          <input type="text" name="resultValue" id="resultValue" value="" className={style.dialogBox} readOnly/>
-        </div>
-        
+        <label htmlFor="currentUnit" className={`${style.tagLabel} ${style.adjust}`}>De: </label>
+        <select name="currentUnit" id="currentUnit" className={style.selectBox}>
+          <option value="">Selecione uma Opção</option>
+          {currentUnitOptions.map((unit, index) => (
+            <option key={index} value={unit}> {unit} </option>
+          ))}
+        </select>
 
+        <label htmlFor="targetUnit" className={style.tagLabel}>Para:</label>
+        <select name="targetUnit" id="targetUnit" className={style.selectBox}>
+          <option value="">Selecione uma Opção</option>
+          {currentUnitOptions.map((unit, index) => (
+            <option key={index} value={unit}> {unit} </option>
+          ))}
+        </select>
+
+      </div>
+      
+      <div className={style.organizer}>
+
+        <label htmlFor="inputValue" className={style.tagLabel}>Valor:</label>
+        <input type="text" name="inputValue" id="inputValue" className={style.dialogBox}/>
+      
+        <label htmlFor="resultValue" className={style.tagLabel}>Resultado:</label>
+        <input type="text" name="resultValue" id="resultValue" value="" className={style.dialogBox} readOnly/>
+
+      </div>
+      
+      <div>
         <input type="submit" value="Converter" className={style.btn}/>
-      </form>
-    </div>
+      </div>
+      
+    </form>
   )
 }
 

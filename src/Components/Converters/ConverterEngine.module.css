@@ -1,0 +1,51 @@
+.formContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.organizer{
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+  align-items: center;
+}
+
+.tagLabel{
+  font-weight: bold;
+}
+
+.selectBox{
+  border: 3px solid #003366;
+  font-size: 1em;
+  border-radius: 10px;
+  height: 3em;
+  width: 25em;
+}
+
+.dialogBox{
+  height: 3em;
+  width: 24.4em;
+  border: 3px solid #003366;
+  font-size: 1em;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.btn{
+  border: 3px solid #003366;
+  background-color: #b3b9c0;
+  color: #003366;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 3em;
+  width: 63em;
+  margin-top: 2em;
+}
+
+.btn:hover{
+  transition: .5s;
+  background-color: #FFA500;
+}
