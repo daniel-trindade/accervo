@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import ConversionTable from "./ConversionTable";
 import style from "./ConverterEngine.module.css";
+import Msg from "../Layout/Msg";
 
 
 function Length({unitSelected}){
 
   const [currentUnitOptions, setCurrentUnitOptions] = useState([]);
+  const [msg, setMsg] = useState('')
+  const [type, setType] = useState('')
 
   useEffect(() => {
     if(unitSelected === "Comprimento"){
@@ -29,10 +32,13 @@ function Length({unitSelected}){
 
     val = val.toString().replace(",", ".")
 
+    
+
     if(from === to){
       document.getElementById("resultValue").value = val
     } else if(val === ""){
-      console.log("Insira um Valor")
+        setMsg('Digite um valor')
+        setType('error')
     } else {
       const convertValue = ConversionTable[from][to];
       console.log(convertValue)
@@ -82,8 +88,10 @@ function Length({unitSelected}){
       <div>
         <input type="submit" value="Converter" className={style.btn}/>
       </div>
-      
+
+      <Msg type={type} message={msg}/>
     </form>
+
   )
 }
 
