@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ConversionTable from "./ConversionTable";
 import style from "./ConverterEngine.module.css";
 import Msg from "../Layout/Msg";
@@ -9,6 +10,7 @@ function Length({unitSelected}){
   const [currentUnitOptions, setCurrentUnitOptions] = useState([]);
   const [msg, setMsg] = useState('')
   const [type, setType] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     if(unitSelected === "Comprimento"){
@@ -37,8 +39,7 @@ function Length({unitSelected}){
     if(from === to){
       document.getElementById("resultValue").value = val
     } else if(val === ""){
-        setMsg('Digite um valor')
-        setType('error')
+        navigate('/conversor', {state: {message: 'Digite um valor para conversão'}})
     } else {
       const convertValue = ConversionTable[from][to];
       console.log(convertValue)

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import styles from "./Converter.module.css"
 import ConverterEngine from "../Converters/ConverterEngine"
@@ -9,8 +10,15 @@ import Msg from '../Layout/Msg'
 function Converter(){
 
   const [selectedValue, setSelectValue] = useState()
+  const [msg, setMsg] = useState('')
+  const location = useLocation()
 
+  let mg = ''
+  if(location.state){
+    mg = location.state.message
+  }
 
+  
   function unitChange(){
     const selected = document.getElementById("unitSelector");
     setSelectValue(selected.value)
@@ -23,6 +31,10 @@ function Converter(){
         <h1>Conversor de Unidades de Medida</h1>
         <p>Aqui você pode selecionar o conversor, unidade de partida e unidade desejada usando as caixas a baixo:</p>
         <p>Unidade de Medida:</p>
+
+        {msg && <Msg type='error' message={msg}/>}
+        {mg && <Msg type='error' message={mg}/>}
+
         <select name="unitSelector" id="unitSelector" className={styles.selectBox} onChange={unitChange}>
           <option value="">Selecione uma opção</option>
           <option value="Comprimento">Comprimento</option>
