@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import ConversionTable from "./ConversionTable";
 import style from "./ConverterEngine.module.css";
-import Msg from "../Layout/Msg";
 
 
-function Length({unitSelected}){
+
+function ConverterEngine({unitSelected, setMessage}){
 
   const [currentUnitOptions, setCurrentUnitOptions] = useState([]);
-  const [msg, setMsg] = useState('')
-  const [type, setType] = useState('')
-  const navigate = useNavigate()
+  
 
   useEffect(() => {
     if(unitSelected === "Comprimento"){
@@ -34,12 +31,10 @@ function Length({unitSelected}){
 
     val = val.toString().replace(",", ".")
 
-    
-
     if(from === to){
       document.getElementById("resultValue").value = val
     } else if(val === ""){
-        navigate('/conversor', {state: {message: 'Digite um valor para conversão'}})
+        setMessage("Digite um valor para Conversão")
     } else {
       const convertValue = ConversionTable[from][to];
       console.log(convertValue)
@@ -90,10 +85,9 @@ function Length({unitSelected}){
         <input type="submit" value="Converter" className={style.btn}/>
       </div>
 
-      <Msg type={type} message={msg}/>
     </form>
 
   )
 }
 
-export default Length;
+export default ConverterEngine;
