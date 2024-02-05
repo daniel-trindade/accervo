@@ -16,6 +16,7 @@ function Navbar(){
         <ul className={styles.list}>
           <li className={styles.item}> <Link to="/">Início</Link> </li>
           <li className={styles.item}> <Link to="/conversor">Conversor de Unidades</Link> </li>
+          <li className={styles.item}> <Link to="/triangulos">Triangulos</Link> </li>
           <li className={styles.item}> <Link to="/sobre">Sobre</Link> </li>
         </ul>
       </MainContainer>

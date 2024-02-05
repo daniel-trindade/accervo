@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import MainContainer from "./Components/Layout/MainContainer";
+import Triangles from "./Components/Pages/Triangles";
 import Converter from "./Components/Pages/Converter";
 import Navbar from "./Components/Layout/Navbar";
 import Footer from "./Components/Layout/Footer";
 import About from "./Components/Pages/About";
 import Home from "./Components/Pages/Home";
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home/>}/>
           <Route path='/conversor' element={<Converter/>}/>
+          <Route path='/triangulos' element={<Triangles/>}/>
           <Route path='/sobre' element={<About/>}/>
         </Routes>
       </MainContainer>
