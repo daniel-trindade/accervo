@@ -1,23 +1,44 @@
-import { Group, Line } from 'react-konva';
+import { Stage, Layer, Line } from 'react-konva';
+import styles from './Konva.module.css'
 
-const Triangle = ({ sideA, sideB, sideC }) => {
-  // Calcular as coordenadas dos vértices do triângulo com base nos lados fornecidos
-  const x0 = 0;
-  const y0 = 0;
-  const x1 = sideB;
-  const y1 = 0;
-  const x2 = (sideC ** 2 - sideA ** 2 + sideB ** 2) / (2 * sideB);
-  const y2 = Math.sqrt(sideA ** 2 - x2 ** 2);
+const Triangle = ({ base, opposite, hypotenuse}) => {
+
+  const centerX = 600
+  const centerY = 150
+
+  const x1 = centerX - (base/2)
+  const y1 = centerY
+  const x2 = x1
+  const y2 = centerY - opposite
+  const x3 = centerX + (base/2)
+  const y3 = centerY
+  const x4 = x1
+  const y4 = y1
 
   return (
-    <Group>
-      {/* Linhas representando os lados do triângulo */}
-      <Line points={[x0, y0, x1, y1, x2, y2, x0, y0]} closed stroke="#00bfff" strokeWidth={2} />
-      {/* Pontos representando os vértices do triângulo */}
-      <Line points={[x0, y0, x1, y1]} stroke="#000" strokeWidth={2} />
-      <Line points={[x1, y1, x2, y2]} stroke="#000" strokeWidth={2} />
-      <Line points={[x2, y2, x0, y0]} stroke="#000" strokeWidth={2} />
-    </Group>
+    <>
+      <label htmlFor="aSide" className={styles.tagLabel}>Lado a: </label>
+      <input type="number" name="aSide" id="aSide" className={styles.dialogBox}/>
+      <label htmlFor="aSide" className={styles.tagLabel}>Lado b: </label>
+      <input type="number" name="aSide" id="aSide" className={styles.dialogBox}/>
+      <label htmlFor="aSide" className={styles.tagLabel}>Lado c: </label>
+      <input type="number" name="aSide" id="aSide" className={styles.dialogBox}/>
+      <input type="submit" value="Gerar" className={styles.btn}/>
+
+      <div className={styles.konvaContainer}>
+        <Stage width={1200} height={300}>
+          <Layer>
+            <Line 
+              points={[x1, y1, x2, y2, x3, y3, x4, y4]}
+              strokeWidth={4}
+              stroke='#FFA500'
+            />
+          </Layer>
+        </Stage>
+      </div>
+    </>
+
+    
   );
 };
 

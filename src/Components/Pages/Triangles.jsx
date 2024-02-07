@@ -1,37 +1,31 @@
-import { Stage, Group, Line, Layer, Rect, RegularPolygon } from 'react-konva';
+import { Stage, Circle, Layer } from 'react-konva';
+import { useState } from 'react';
 import Triangle from '../Konva/Triangle';
+import Cir from '../Konva/Cir';
+
+import styles from './Triangles.module.css'
 
 
 function Triangles(){
-  const sideA = 100
-  const sideB = 100
-  const sideC = 100
 
-  const x0 = 0;
-  const y0 = 0;
-  const x1 = sideB;
-  const y1 = 0;
-  const x2 = (sideC ** 2 - sideA ** 2 + sideB ** 2) / (2 * sideB);
-  const y2 = Math.sqrt(sideA ** 2 - x2 ** 2);
+  const [base, setBase] = useState("100")
+  const [opposite, setOpposite] = useState("100")
+  const [hipotenusa, setHypotenuse] = useState("100")
+
+
 
   return(
     <div>
       <h1>Relação de Triangulos</h1>
-      <Stage
-        width={1200}
-        height={300}
-      >
-        <Layer>
-          <Group draggable>
-            {/* Linhas representando os lados do triângulo */}
-            <Line points={[x0, y0, x1, y1, x2, y2, x0, y0]} closed stroke="#00bfff" strokeWidth={2} />
-            {/* Pontos representando os vértices do triângulo */}
-            <Line points={[x0, y0, x1, y1]} stroke="#000" strokeWidth={2} />
-            <Line points={[x1, y1, x2, y2]} stroke="#000" strokeWidth={2} />
-            <Line points={[x2, y2, x0, y0]} stroke="#000" strokeWidth={2} />
-          </Group>
-        </Layer>
-      </Stage>
+      <select name="shape" id="shape" className={styles.selectBox}>
+        <option value="">Selecione uma forma Geométrica</option>
+        <option value="circle">Circonferência</option>
+        <option value="triangle">Triângulo</option>
+        <option value="rect">Retangulo</option>
+      </select>
+      <div>
+        <Triangle base={100} opposite={100}/>
+      </div>
     </div>
   )
 }
