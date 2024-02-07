@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import MainContainer from "./Components/Layout/MainContainer";
-import Triangles from "./Components/Pages/Triangles";
+import Geometrix from "./Components/Pages/Geometrix";
 import Converter from "./Components/Pages/Converter";
 import Navbar from "./Components/Layout/Navbar";
 import Footer from "./Components/Layout/Footer";
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home/>}/>
           <Route path='/conversor' element={<Converter/>}/>
-          <Route path='/triangulos' element={<Triangles/>}/>
+          <Route path='/geometrix' element={<Geometrix/>}/>
           <Route path='/sobre' element={<About/>}/>
         </Routes>
       </MainContainer>

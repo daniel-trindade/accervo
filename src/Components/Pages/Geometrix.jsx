@@ -2,6 +2,7 @@ import { Stage, Circle, Layer } from 'react-konva';
 import { useState } from 'react';
 import Triangle from '../Konva/Triangle';
 import Cir from '../Konva/Cir';
+import Rectangle from '../Konva/Rectangle';
 
 import styles from './Triangles.module.css'
 
@@ -24,7 +25,7 @@ function Triangles(){
         <option value="rect">Retangulo</option>
       </select>
       <div>
-        <Triangle base={100} opposite={100}/>
+        <Rectangle aSide={100} bSide={50}/>
       </div>
     </div>
   )

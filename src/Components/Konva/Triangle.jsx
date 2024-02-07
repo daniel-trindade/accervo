@@ -1,16 +1,16 @@
 import { Stage, Layer, Line } from 'react-konva';
 import styles from './Konva.module.css'
 
-const Triangle = ({ base, opposite, hypotenuse}) => {
+const Triangle = ({ aSide, bSide, cSide}) => {
 
   const centerX = 600
   const centerY = 150
 
-  const x1 = centerX - (base/2)
+  const x1 = centerX - (aSide/2)
   const y1 = centerY
   const x2 = x1
-  const y2 = centerY - opposite
-  const x3 = centerX + (base/2)
+  const y2 = centerY - bSide
+  const x3 = centerX + (aSide/2)
   const y3 = centerY
   const x4 = x1
   const y4 = y1
