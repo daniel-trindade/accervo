@@ -1,16 +1,27 @@
 import { Stage, Layer, Circle, Rect } from "react-konva";
+import { useState } from "react";
 import styles from './Konva.module.css'
 
-function Cir({rad}){
+function Cir(){
+
+  const [rad, setRad] = useState()
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    const radValue = document.getElementById('rad').value
+    setRad(parseFloat(radValue)*10)
+  }
   return(
 
     <>
-      <label htmlFor="aSide" className={styles.tagLabel}>Raio : </label>
-      <input type="number" name="aSide" id="aSide" className={styles.dialogBox}/>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="rad" className={styles.tagLabel}>Raio : </label>
+        <input type="number" name="rad" id="rad" className={styles.dialogBox}/>
 
-      <input type="submit" value="Gerar" className={styles.btn}/>
+        <input type="submit" value="Gerar" className={styles.btn}/>
+      </form>
 
-      <div className={styles.konvaContainer}>
+      <div className={styles.konvaContainer} >
         <Stage width={1200} height={300}>
           <Layer draggable>
             <Circle 

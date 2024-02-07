@@ -9,23 +9,27 @@ import styles from './Triangles.module.css'
 
 function Triangles(){
 
-  const [base, setBase] = useState("100")
-  const [opposite, setOpposite] = useState("100")
-  const [hipotenusa, setHypotenuse] = useState("100")
+  const [shape, setShape] = useState()
+
+  const handleChange = (e) => {
+    setShape(e.target.value)
+  }
 
 
 
   return(
     <div>
-      <h1>Relação de Triangulos</h1>
-      <select name="shape" id="shape" className={styles.selectBox}>
+      <h1>Figuras Geométricas</h1>
+      <select name="shape" id="shape" className={styles.selectBox} onChange={handleChange} value={shape}> 
         <option value="">Selecione uma forma Geométrica</option>
         <option value="circle">Circonferência</option>
-        <option value="triangle">Triângulo</option>
+        <option value="triangle">Triângulo Retângulo</option>
         <option value="rect">Retangulo</option>
       </select>
       <div>
-        <Rectangle aSide={100} bSide={50}/>
+        {shape === 'circle' && <Cir rad={100}/>}
+        {shape === 'triangle' && <Triangle aSide={100} bSide={100}/>}
+        {shape === 'rect' && <Rectangle aSide={300} bSide={100}/>}
       </div>
     </div>
   )

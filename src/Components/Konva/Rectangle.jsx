@@ -1,25 +1,54 @@
 import { Stage, Layer, Rect } from "react-konva";
+import { useState } from "react";
 import styles from './Konva.module.css'
 
-function Rectangle({aSide, bSide}){
+function Rectangle(){
+
+  const [base, setBase] = useState()
+  const [height, setHeight] = useState()
+
+  const xCenter = (600-(base/2))
+  const yCenter = (150-(height/2))
+
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+
+    const baseValue = document.getElementById('base').value
+    const heightValue = document.getElementById('height').value
+
+    setBase(parseFloat(baseValue))
+    setHeight(parseFloat(heightValue))
+  }
+  
+
+
   return(
 
     <>
-      <label htmlFor="aSide" className={styles.tagLabel}>Lado A: </label>
-      <input type="number" name="aSide" id="aSide" className={styles.dialogBox}/>
-      <label htmlFor="bSide" className={styles.tagLabel}>Lado B: </label>
-      <input type="number" name="bSide" id="bSide" className={styles.dialogBox}/>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="base" className={styles.tagLabel}>Base:  </label>
+          <input type="number" name="base" id="base" className={styles.dialogBox}/>
+          <label htmlFor="height" className={styles.tagLabel}>Altura: </label>
+          <input type="number" name="height" id="height" className={styles.dialogBox}/>
 
-      <input type="submit" value="Gerar" className={styles.btn}/>
+          <input type="submit" value="Gerar" className={styles.btn}/>
+          
+        </form>
+        
+        
+      </div>
+
+      
 
       <div className={styles.konvaContainer}>
         <Stage width={1200} height={300}>
           <Layer draggable>
             <Rect
-              width={aSide}
-              height={bSide}
-              x={600}
-              y={150}
+              width={base}
+              height={height}
+              x={xCenter}
+              y={yCenter}
               stroke='#FFA500'
               strokeWidth={4}
             />
