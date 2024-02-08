@@ -1,14 +1,20 @@
 import { Stage, Layer, Rect } from "react-konva";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from './Konva.module.css'
 
 function Rectangle(){
 
+  const wKonva = 900
+  const hKonva = 500
+
   const [base, setBase] = useState()
   const [height, setHeight] = useState()
+  const [perimeter, setPerimeter] = useState(0)
+  const [area, setArea] = useState(0)
+  const [diagonal, setDiagonal] = useState(0)
 
-  const xCenter = (600-(base/2))
-  const yCenter = (150-(height/2))
+  const xCenter = (wKonva/2)-(base/2)
+  const yCenter = ((hKonva/2)-(height/2))
 
   const handleSubmit = (e) =>{
     e.preventDefault()
@@ -19,8 +25,15 @@ function Rectangle(){
     setBase(parseFloat(baseValue))
     setHeight(parseFloat(heightValue))
   }
-  
 
+  useEffect(() => {
+    const newPerimeter = ((base*2)+(height*2))
+    const newArea = (base*height)
+
+    setPerimeter(newPerimeter)
+    setArea(newArea)
+  }, [base, height])
+  
 
   return(
 
@@ -38,23 +51,35 @@ function Rectangle(){
         
         
       </div>
+      <div className={styles.geoContainer}>
+        <div className={styles.konvaContainer}>
+          <Stage width={wKonva} height={hKonva}>
+            <Layer draggable>
+              <Rect
+                width={base}
+                height={height}
+                x={xCenter}
+                y={yCenter}
+                stroke='#FFA500'
+                strokeWidth={4}
+              />
+            </Layer>
+          </Stage>
 
-      
+            
+        </div>
+        <div className={styles.infoContainer}>
 
-      <div className={styles.konvaContainer}>
-        <Stage width={1200} height={300}>
-          <Layer draggable>
-            <Rect
-              width={base}
-              height={height}
-              x={xCenter}
-              y={yCenter}
-              stroke='#FFA500'
-              strokeWidth={4}
-            />
-          </Layer>
-        </Stage>
-          
+          <label htmlFor="perimeter" className={styles.labelKonva}>Perímetro</label>
+          <input type="number" id="perimeter" value={perimeter} readOnly className={styles.propertiesBox}/>
+
+          <label htmlFor="area" className={styles.labelKonva}>Área</label>
+          <input type="number" id="area" readOnly value={area} className={styles.propertiesBox}/>
+
+          <label htmlFor="diagonal" className={styles.labelKonva}>Diagonal</label>
+          <input type="number" id="diagonal" readOnly className={styles.propertiesBox}/>
+
+        </div>
       </div>
     </>
     

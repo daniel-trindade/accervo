@@ -4,7 +4,7 @@ import Triangle from '../Konva/Triangle';
 import Cir from '../Konva/Cir';
 import Rectangle from '../Konva/Rectangle';
 
-import styles from './Triangles.module.css'
+import styles from './Geometrix.module.css'
 
 
 function Triangles(){
