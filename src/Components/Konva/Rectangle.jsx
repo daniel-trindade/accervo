@@ -29,9 +29,11 @@ function Rectangle(){
   useEffect(() => {
     const newPerimeter = ((base*2)+(height*2))
     const newArea = (base*height)
+    const newDiagonal = (Math.sqrt(base**2 + height**2)).toFixed(2)
 
     setPerimeter(newPerimeter)
     setArea(newArea)
+    setDiagonal(newDiagonal)
   }, [base, height])
   
 
@@ -77,7 +79,7 @@ function Rectangle(){
           <input type="number" id="area" readOnly value={area} className={styles.propertiesBox}/>
 
           <label htmlFor="diagonal" className={styles.labelKonva}>Diagonal</label>
-          <input type="number" id="diagonal" readOnly className={styles.propertiesBox}/>
+          <input type="number" id="diagonal" readOnly value={diagonal} className={styles.propertiesBox}/>
 
         </div>
       </div>
