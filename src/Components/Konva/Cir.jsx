@@ -1,4 +1,4 @@
-import { Stage, Layer, Circle, Rect } from "react-konva";
+import { Stage, Layer, Circle } from "react-konva";
 import { useState, useEffect } from "react";
 import styles from './Konva.module.css'
 

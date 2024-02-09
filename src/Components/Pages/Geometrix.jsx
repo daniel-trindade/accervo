@@ -1,8 +1,8 @@
-import { Stage, Circle, Layer } from 'react-konva';
 import { useState } from 'react';
 import Triangle from '../Konva/Triangle';
 import Cir from '../Konva/Cir';
 import Rectangle from '../Konva/Rectangle';
+import TriangleObt from '../Konva/TriangleObt';
 
 import styles from './Geometrix.module.css'
 
@@ -24,12 +24,14 @@ function Triangles(){
         <option value="">Selecione uma forma Geométrica</option>
         <option value="circle">Circonferência</option>
         <option value="triangle">Triângulo Retângulo</option>
+        <option value="triangleObt">Triângulo</option>
         <option value="rect">Retangulo</option>
       </select>
       <div>
         {shape === 'circle' && <Cir rad={100}/>}
         {shape === 'triangle' && <Triangle aSide={100} bSide={100}/>}
         {shape === 'rect' && <Rectangle aSide={300} bSide={100}/>}
+        {shape === 'triangleObt' && <TriangleObt aSide={300} bSide={100} cSide={20}/>}
       </div>
     </div>
   )

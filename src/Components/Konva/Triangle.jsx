@@ -1,58 +1,95 @@
 import { Stage, Layer, Line } from 'react-konva';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Konva.module.css'
 
 const Triangle = () => {
 
-  const centerX = 600
-  const centerY = 150
-  const [aSide, setASide] = useState()
-  const [bSide, setBSide] = useState()
-  const [cSide, setCSide] = useState()
+  const wKonva = 900
+  const hKonva = 500
 
-  const x1 = centerX - (aSide/2)
-  const y1 = centerY + (bSide/2)
+  const centerX = wKonva/2
+  const centerY = hKonva/2
+  const [base, setBase] = useState()
+  const [height, setHeight] = useState()
+  const [hypotenuse, setHypotenuse] = useState(0)
+  const [area, setArea] = useState(0)
+  const [perimeter, setPerimeter] = useState(0)
+
+
+  const x1 = centerX - (base/2)
+  const y1 = centerY + (height/2)
   const x2 = x1
-  const y2 = centerY - (bSide/2)
-  const x3 = centerX + (aSide/2)
-  const y3 = centerY + (bSide/2)
+  const y2 = centerY - (height/2)
+  const x3 = centerX + (base/2)
+  const y3 = centerY + (height/2)
   const x4 = x1
   const y4 = y1
 
   const handleSubmit = (e) =>{
-    e.preventDefault()
-    const aSideValue = document.getElementById('aSide').value
-    const bSideValue = document.getElementById('bSide').value
-    const cSideValue = document.getElementById('cSide').value
 
-    setASide(parseFloat(aSideValue))
-    setBSide(parseFloat(bSideValue))
-    setCSide(parseFloat(cSideValue))
+    e.preventDefault()
+    
+    const baseValue = document.getElementById('base').value
+    const heightValue = document.getElementById('height').value
+
+    setBase(parseFloat(baseValue))
+    setHeight(parseFloat(heightValue))
 
   }
+
+  useEffect(() => {
+
+    const newHypotenuse = (Math.sqrt((base**2)+(height**2))).toFixed(2)
+    const newArea = ((base*height)/2)
+    const newPerimeter = (base+height+hypotenuse)
+    
+
+    setHypotenuse(newHypotenuse)
+    setArea(newArea)
+    setPerimeter(newPerimeter)
+
+  }, [base, height, hypotenuse])
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="aSide" className={styles.tagLabel}>Base: </label>
-        <input type="number" name="aSide" id="aSide" className={styles.dialogBox}/>
-        <label htmlFor="bSide" className={styles.tagLabel}>Altura: </label>
-        <input type="number" name="bSide" id="bSide" className={styles.dialogBox}/>
-        <label htmlFor="cSide" className={styles.tagLabel}>Lado c: </label>
-        <input type="number" name="cSide" id="cSide" className={styles.dialogBox}/>
+
+        <label htmlFor="base" className={styles.tagLabel}>Base: </label>
+        <input type="number" name="base" id="base" className={styles.dialogBox}/>
+
+        <label htmlFor="height" className={styles.tagLabel}>Altura: </label>
+        <input type="number" name="height" id="height" className={styles.dialogBox}/>
+
         <input type="submit" value="Gerar" className={styles.btn}/>
+
       </form>
 
-      <div className={styles.konvaContainer}>
-        <Stage width={1200} height={300}>
-          <Layer>
-            <Line 
-              points={[x1, y1, x2, y2, x3, y3, x4, y4]}
-              strokeWidth={4}
-              stroke='#FFA500'
-            />
-          </Layer>
-        </Stage>
+      <div className={styles.geoContainer}>
+        <div className={styles.konvaContainer}>
+          <Stage width={wKonva} height={hKonva}>
+            <Layer>
+              <Line 
+                points={[x1, y1, x2, y2, x3, y3, x4, y4]}
+                strokeWidth={4}
+                stroke='#FFA500'
+              />
+            </Layer>
+          </Stage>
+        </div>
+        <div className={styles.infoContainer}>
+
+          <label htmlFor="hypotenuse" className={styles.labelKonva}>Hipotenusa</label>
+          <input type="number" id="ypotenuse" readOnly value={hypotenuse} className={styles.propertiesBox}/>
+
+          <label htmlFor="area" className={styles.labelKonva}>Área</label>
+          <input type="number" id="area" readOnly value={area} className={styles.propertiesBox}/>
+
+          <label htmlFor="perimeter" className={styles.labelKonva}>Perímetro</label>
+          <input type="number" id="perimeter" value={perimeter} readOnly className={styles.propertiesBox}/>
+
+
+
+        </div>
       </div>
     </>
 
