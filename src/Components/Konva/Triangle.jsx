@@ -14,6 +14,8 @@ const Triangle = () => {
   const [hypotenuse, setHypotenuse] = useState(0)
   const [area, setArea] = useState(0)
   const [perimeter, setPerimeter] = useState(0)
+  const [alpha, setAlpha] = useState()
+  const [beta, setBeta] = useState()
 
 
   const x1 = centerX - (base/2)
@@ -28,7 +30,7 @@ const Triangle = () => {
   const handleSubmit = (e) =>{
 
     e.preventDefault()
-    
+
     const baseValue = document.getElementById('base').value
     const heightValue = document.getElementById('height').value
 
@@ -40,13 +42,25 @@ const Triangle = () => {
   useEffect(() => {
 
     const newHypotenuse = (Math.sqrt((base**2)+(height**2))).toFixed(2)
-    const newArea = ((base*height)/2)
-    const newPerimeter = (base+height+hypotenuse)
-    
-
     setHypotenuse(newHypotenuse)
+
+    const newArea = (base*height)/2
     setArea(newArea)
+
+    const newPerimeter = (base+height+ parseFloat(hypotenuse)).toFixed(2)
     setPerimeter(newPerimeter)
+
+    const newAlpha = (((Math.asin(height/hypotenuse))*180)/Math.PI).toFixed(2)
+    setAlpha(newAlpha)
+
+    const newBeta = (90 - (((Math.asin(height/hypotenuse))*180)/Math.PI)).toFixed(2)
+    setBeta(newBeta)
+
+    
+    
+    
+    
+    
 
   }, [base, height, hypotenuse])
 
@@ -78,14 +92,20 @@ const Triangle = () => {
         </div>
         <div className={styles.infoContainer}>
 
-          <label htmlFor="hypotenuse" className={styles.labelKonva}>Hipotenusa</label>
-          <input type="number" id="ypotenuse" readOnly value={hypotenuse} className={styles.propertiesBox}/>
+          <label htmlFor="hypotenuse" className={styles.labelKonvaT}>Hipotenusa</label>
+          <input type="number" id="ypotenuse" readOnly value={hypotenuse} className={styles.propertiesBoxT}/>
 
-          <label htmlFor="area" className={styles.labelKonva}>Área</label>
-          <input type="number" id="area" readOnly value={area} className={styles.propertiesBox}/>
+          <label htmlFor="area" className={styles.labelKonvaT}>Área</label>
+          <input type="number" id="area" readOnly value={area} className={styles.propertiesBoxT}/>
 
-          <label htmlFor="perimeter" className={styles.labelKonva}>Perímetro</label>
-          <input type="number" id="perimeter" value={perimeter} readOnly className={styles.propertiesBox}/>
+          <label htmlFor="perimeter" className={styles.labelKonvaT}>Perímetro</label>
+          <input type="number" id="perimeter" value={perimeter} readOnly className={styles.propertiesBoxT}/>
+
+          <label htmlFor="alpha" className={styles.labelKonvaT}>Angulo Alpha</label>
+          <input type="number" id="alpha" value={alpha} readOnly className={styles.propertiesBoxT}/>
+
+          <label htmlFor="beta" className={styles.labelKonvaT}>Angulo Beta</label>
+          <input type="number" id="beta" value={beta} readOnly className={styles.propertiesBoxT}/>
 
 
 

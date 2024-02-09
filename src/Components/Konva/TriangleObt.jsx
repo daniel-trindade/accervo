@@ -1,55 +1,49 @@
 import { Stage, Layer, Line } from 'react-konva';
 import { useState, useEffect } from 'react';
 import styles from './Konva.module.css'
+import Baskahra from '../../MathFormules/Baskahra';
 
 const TriangleObt = () => {
-
+  //Establishing the dimensions of the drawing area
   const wKonva = 900
   const hKonva = 500
 
+  //Center point coordinates
   const centerX = wKonva/2
   const centerY = hKonva/2
-  const [aSide, setASide] = useState()
-  const [bSide, setBSide] = useState()
+
+  //the three sides 
+  const [aSide, setASide] = useState() 
+  const [bSide, setBSide] = useState() //base
   const [cSide, setCSide] = useState()
+
+  //
   const [hypotenuse, setHypotenuse] = useState(0)
   const [area, setArea] = useState(0)
   const [perimeter, setPerimeter] = useState(0)
 
 
   const x1 = centerX - (aSide/2)
-  const y1 = centerY + (bSide/2)
+  let y1 = centerY
 
-  const x3 = centerX + (aSide/2)
-  const y3 = centerY + (bSide/2)
-  const x4 = x1
-  const y4 = y1
+  const x2 = centerX + (aSide/2)
+  let y2 = centerY
 
-  const x2 = (aSide**2 - cSide**2 - x1**2 + x3**2)/(2*(x3-x1))
+
+  const x3 = (bSide**2 - cSide**2 - x1**2 + x2**2)/(2*(x2-x1))
 
   const a = 1
   const b = -2*y1
-  const c = (y1**2 - bSide**2)+ (x2-x1)**2
+  const c = (y1**2 - bSide**2) + (x3-x1)**2
 
-  const y2 = calcularBhaskara(a, b, c)
+  let y3 = Baskahra(a, b, c)
 
-  function calcularBhaskara(a, b, c) {
-    var delta = Math.pow(b, 2) - 4 * a * c;
 
-    if (delta < 0) {
-        return 0;
-    } else if (delta === 0) {
-        var x = -b / (2 * a);
-        return x;
-    } else {
-        var x1 = (-b + Math.sqrt(delta)) / (2 * a);
-        var x2 = (-b - Math.sqrt(delta)) / (2 * a);
+  y3 = y3-2*y3
 
-        // Retorna apenas a maior raiz
-        var maiorRaiz = Math.max(x1, x2);
-        return maiorRaiz;
-    }
-}
+
+  const x4 = x1
+  const y4 = y1
 
 
   const handleSubmit = (e) =>{
@@ -76,6 +70,9 @@ const TriangleObt = () => {
     setHypotenuse(newHypotenuse)
     setArea(newArea)
     setPerimeter(newPerimeter)
+
+    console.log(y3)
+    console.log("coco")
 
   }, [aSide, bSide, cSide])
 
