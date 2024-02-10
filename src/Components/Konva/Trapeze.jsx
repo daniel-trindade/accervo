@@ -1,6 +1,7 @@
 import { Stage, Layer, Line } from "react-konva";
 import { useEffect, useState } from "react";
 import styles from './Konva.module.css'
+import Hypotenuse from "../../MathFormules/Hypotenuse";
 
 function Trapeze(){
 
@@ -12,22 +13,10 @@ function Trapeze(){
   const [top, setTop] = useState()
   const [perimeter, setPerimeter] = useState(0)
   const [area, setArea] = useState(0)
-  const [diagonal, setDiagonal] = useState(0)
+  const [alpha, setAlpha] = useState(0)
 
-  const xCenter = (wKonva/2)-(base/2)
-  const yCenter = ((hKonva/2)-(height/2))
-
-  //Drawing Trapeze
-  const x1 = xCenter - (base/2)
-  const y1 = yCenter + (height/2)
-  const x2 = xCenter + (base/2)
-  const y2 = y1
-  const x3 = xCenter + (top/2)
-  const y3 = yCenter - (height/2)
-  const x4 = xCenter - (top/2)
-  const y4 = y3
-  const x5 = x1
-  const y5 = y1
+  const xCenter = (wKonva/2)
+  const yCenter = (hKonva/2)
 
   const handleSubmit = (e) =>{
     e.preventDefault()
@@ -41,15 +30,27 @@ function Trapeze(){
     setTop(parseFloat(topValue))
   }
 
+    //Drawing Trapeze
+    const x1 = xCenter - (base/2)
+    const y1 = yCenter + (height/2)
+    const x2 = xCenter + (base/2)
+    const y2 = y1
+    const x3 = xCenter + (top/2)
+    const y3 = yCenter - (height/2)
+    const x4 = xCenter - (top/2)
+    const y4 = y3
+    const x5 = x1
+    const y5 = y1
+
   useEffect(() => {
-    const newPerimeter = ((base*2)+(height*2))
-    const newArea = (base*height)
-    const newDiagonal = (Math.sqrt(base**2 + height**2)).toFixed(2)
+    const newPerimeter = (base+top+(2*(Hypotenuse(height, ((base-top)/2))))).toFixed(2)
+    const newArea = ((base+top)*height)/2
+    const newAlpha = (((Math.asin(height/Hypotenuse(height, ((base-top)/2))))*180)/Math.PI).toFixed(2)
 
     setPerimeter(newPerimeter)
     setArea(newArea)
-    setDiagonal(newDiagonal)
-  }, [base, height])
+    setAlpha(newAlpha)
+  }, [base, height, top])
   
 
   return(
@@ -95,8 +96,8 @@ function Trapeze(){
           <label htmlFor="area" className={styles.labelKonva}>Área</label>
           <input type="number" id="area" readOnly value={area} className={styles.propertiesBox}/>
 
-          <label htmlFor="diagonal" className={styles.labelKonva}>Diagonal</label>
-          <input type="number" id="diagonal" readOnly value={diagonal} className={styles.propertiesBox}/>
+          <label htmlFor="alpha" className={styles.labelKonva}>Ângulo Alfa</label>
+          <input type="number" id="alpha" readOnly value={alpha} className={styles.propertiesBox}/>
 
         </div>
       </div>
