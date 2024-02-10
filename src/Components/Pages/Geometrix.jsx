@@ -3,6 +3,7 @@ import Triangle from '../Konva/Triangle';
 import Cir from '../Konva/Cir';
 import Rectangle from '../Konva/Rectangle';
 import TriangleObt from '../Konva/TriangleObt';
+import Trapeze from '../Konva/Trapeze';
 
 import styles from './Geometrix.module.css'
 
@@ -26,12 +27,15 @@ function Triangles(){
         <option value="triangle">Triângulo Retângulo</option>
         <option value="triangleObt">Triângulo</option>
         <option value="rect">Retangulo</option>
+        <option value="trapeze">Trapeze</option>
       </select>
       <div>
         {shape === 'circle' && <Cir rad={100}/>}
         {shape === 'triangle' && <Triangle aSide={100} bSide={100}/>}
         {shape === 'rect' && <Rectangle aSide={300} bSide={100}/>}
         {shape === 'triangleObt' && <TriangleObt aSide={300} bSide={100} cSide={20}/>}
+        {shape === 'trapeze' && <Trapeze aSide={300} bSide={100} cSide={20}/>}
+
       </div>
     </div>
   )
