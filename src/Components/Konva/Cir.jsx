@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import styles from './Konva.module.css'
 
 function Cir(){
-
+  
+  //Dimensions of the drawing area
   const wKonva = 900
   const hKonva = 500
+
 
   const [rad, setRad] = useState()
   const [diameter, setDiameter] = useState()

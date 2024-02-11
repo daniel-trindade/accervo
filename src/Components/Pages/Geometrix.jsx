@@ -25,9 +25,8 @@ function Triangles(){
         <option value="">Selecione uma forma Geométrica</option>
         <option value="circle">Circonferência</option>
         <option value="triangle">Triângulo Retângulo</option>
-        <option value="triangleObt">Triângulo</option>
         <option value="rect">Retangulo</option>
-        <option value="trapeze">Trapeze</option>
+        <option value="trapeze">Trapézio</option>
       </select>
       <div>
         {shape === 'circle' && <Cir rad={100}/>}
